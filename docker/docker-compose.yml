@@ -1,0 +1,42 @@
+version: "3.2"
+
+services:
+    nodeA:
+        image: alpine
+        #command: echo "ciao da A"
+        entrypoint: ["tail", "-f", "/dev/null"]
+        volumes:
+          - type: volume
+            source: nfs_vol
+            target: /tmp
+            volume:
+                nocopy: true
+        networks:
+              - netA
+    nodeB:
+        image: alpine
+        #command: echo "ciao da B"
+        entrypoint: ["tail", "-f", "/dev/null"]
+        volumes:
+          - type: volume
+            source: nfs_vol
+            target: /tmp
+            volume:
+                nocopy: true
+        networks:
+              - netB
+
+networks:
+  netA:
+    driver: bridge
+  netB:
+    driver: bridge
+
+volumes:
+    nfs_vol:
+        driver: local
+        driver_opts:
+            type: "nfs"
+            o: "addr=10.26.1.72,rw"
+            device: ":/var/test-docker"
+
