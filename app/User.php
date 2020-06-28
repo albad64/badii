@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -14,13 +13,18 @@ use \DateTimeInterface;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens;
 
     public $table = 'users';
 
     protected $hidden = [
         'remember_token',
         'password',
+    ];
+
+    const STATUS_SELECT = [
+        'Inactive' => 'Inactive',
+        'Active'   => 'Active',
     ];
 
     protected $dates = [
@@ -32,10 +36,14 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'status',
         'email',
+        'is_admin',
+        'external_auth',
         'email_verified_at',
         'password',
         'remember_token',
+        'suite',
         'created_at',
         'updated_at',
         'deleted_at',

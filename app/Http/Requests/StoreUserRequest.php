@@ -20,6 +20,14 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name'     => [
+                'min:3',
+                'max:10',
+                'required',
+            ],
+            'status'   => [
+                'required',
+            ],
+            'is_admin' => [
                 'required',
             ],
             'password' => [

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Role;
@@ -66,21 +65,5 @@ class UsersController extends Controller
         $user->load('roles', 'userUserAlerts');
 
         return view('admin.users.show', compact('user'));
-    }
-
-    public function destroy(User $user)
-    {
-        abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $user->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyUserRequest $request)
-    {
-        User::whereIn('id', request('ids'))->delete();
-
-        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

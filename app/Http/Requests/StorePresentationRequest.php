@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Presentation;
+use Gate;
+use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Component\HttpFoundation\Response;
+
+class StorePresentationRequest extends FormRequest
+{
+    public function authorize()
+    {
+        abort_if(Gate::denies('presentation_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return true;
+    }
+
+    public function rules()
+    {
+        return [
+            'resource_code_id' => [
+                'required',
+                'integer',
+            ],
+            'order_number'     => [
+                'required',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
+            ],
+            'event_year'       => [
+                'nullable',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
+            ],
+        ];
+    }
+}

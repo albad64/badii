@@ -19,13 +19,21 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'    => [
+            'name'     => [
+                'min:3',
+                'max:10',
                 'required',
             ],
-            'roles.*' => [
+            'status'   => [
+                'required',
+            ],
+            'is_admin' => [
+                'required',
+            ],
+            'roles.*'  => [
                 'integer',
             ],
-            'roles'   => [
+            'roles'    => [
                 'required',
                 'array',
             ],

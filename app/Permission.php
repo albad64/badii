@@ -3,13 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
 class Permission extends Model
 {
-    use SoftDeletes;
-
     public $table = 'permissions';
 
     protected $dates = [

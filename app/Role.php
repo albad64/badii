@@ -3,13 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
 class Role extends Model
 {
-    use SoftDeletes;
-
     public $table = 'roles';
 
     protected $dates = [
@@ -28,6 +25,11 @@ class Role extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function rolesUsers()
+    {
+        return $this->belongsToMany(User::class);
     }
 
     public function permissions()
