@@ -18,12 +18,46 @@
                 <span class="help-block">{{ trans('cruds.user.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required">{{ trans('cruds.user.fields.status') }}</label>
+                <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
+                    <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\User::STATUS_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('status', 'Inactive') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.user.fields.status_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="email">{{ trans('cruds.user.fields.email') }}</label>
                 <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email') }}">
                 @if($errors->has('email'))
                     <span class="text-danger">{{ $errors->first('email') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.email_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('is_admin') ? 'is-invalid' : '' }}">
+                    <input class="form-check-input" type="checkbox" name="is_admin" id="is_admin" value="1" required {{ old('is_admin', 0) == 1 ? 'checked' : '' }}>
+                    <label class="required form-check-label" for="is_admin">{{ trans('cruds.user.fields.is_admin') }}</label>
+                </div>
+                @if($errors->has('is_admin'))
+                    <span class="text-danger">{{ $errors->first('is_admin') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.user.fields.is_admin_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('external_auth') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="external_auth" value="0">
+                    <input class="form-check-input" type="checkbox" name="external_auth" id="external_auth" value="1" {{ old('external_auth', 0) == 1 || old('external_auth') === null ? 'checked' : '' }}>
+                    <label class="form-check-label" for="external_auth">{{ trans('cruds.user.fields.external_auth') }}</label>
+                </div>
+                @if($errors->has('external_auth'))
+                    <span class="text-danger">{{ $errors->first('external_auth') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.user.fields.external_auth_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="password">{{ trans('cruds.user.fields.password') }}</label>

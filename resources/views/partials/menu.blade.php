@@ -100,6 +100,207 @@
                         </a>
                     </li>
                 @endcan
+                @can('hr_management_access')
+                    <li class="nav-item has-treeview {{ request()->is('admin/resources*') ? 'menu-open' : '' }} {{ request()->is('admin/house-holds*') ? 'menu-open' : '' }} {{ request()->is('admin/contracts*') ? 'menu-open' : '' }} {{ request()->is('admin/salaries*') ? 'menu-open' : '' }} {{ request()->is('admin/benefits*') ? 'menu-open' : '' }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon fas fa-address-card">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.hrManagement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('resource_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.resources.index") }}" class="nav-link {{ request()->is('admin/resources') || request()->is('admin/resources/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.resource.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('house_hold_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.house-holds.index") }}" class="nav-link {{ request()->is('admin/house-holds') || request()->is('admin/house-holds/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.houseHold.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('contract_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.contracts.index") }}" class="nav-link {{ request()->is('admin/contracts') || request()->is('admin/contracts/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.contract.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('salary_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.salaries.index") }}" class="nav-link {{ request()->is('admin/salaries') || request()->is('admin/salaries/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.salary.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('benefit_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.benefits.index") }}" class="nav-link {{ request()->is('admin/benefits') || request()->is('admin/benefits/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.benefit.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                @can('general_element_access')
+                    <li class="nav-item has-treeview {{ request()->is('admin/countries*') ? 'menu-open' : '' }} {{ request()->is('admin/currencies*') ? 'menu-open' : '' }} {{ request()->is('admin/currency-histories*') ? 'menu-open' : '' }} {{ request()->is('admin/companies*') ? 'menu-open' : '' }} {{ request()->is('admin/companies-bank-holidays*') ? 'menu-open' : '' }} {{ request()->is('admin/companies-holidays*') ? 'menu-open' : '' }} {{ request()->is('admin/company-calendars*') ? 'menu-open' : '' }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon fas fa-cogs">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.generalElement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('country_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.countries.index") }}" class="nav-link {{ request()->is('admin/countries') || request()->is('admin/countries/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-flag">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.country.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('currency_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.currencies.index") }}" class="nav-link {{ request()->is('admin/currencies') || request()->is('admin/currencies/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.currency.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('currency_history_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.currency-histories.index") }}" class="nav-link {{ request()->is('admin/currency-histories') || request()->is('admin/currency-histories/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.currencyHistory.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('company_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.companies.index") }}" class="nav-link {{ request()->is('admin/companies') || request()->is('admin/companies/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.company.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('companies_bank_holiday_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.companies-bank-holidays.index") }}" class="nav-link {{ request()->is('admin/companies-bank-holidays') || request()->is('admin/companies-bank-holidays/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.companiesBankHoliday.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('companies_holiday_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.companies-holidays.index") }}" class="nav-link {{ request()->is('admin/companies-holidays') || request()->is('admin/companies-holidays/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.companiesHoliday.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('company_calendar_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.company-calendars.index") }}" class="nav-link {{ request()->is('admin/company-calendars') || request()->is('admin/company-calendars/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.companyCalendar.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                @can('skils_management_access')
+                    <li class="nav-item has-treeview {{ request()->is('admin/education*') ? 'menu-open' : '' }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon fas fa-cogs">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.skilsManagement.title') }}
+                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('education_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.education.index") }}" class="nav-link {{ request()->is('admin/education') || request()->is('admin/education/*') ? 'active' : '' }}">
+                                        <i class="fa-fw nav-icon fas fa-cogs">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.education.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
                 @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
                     @can('profile_password_edit')
                         <li class="nav-item">
