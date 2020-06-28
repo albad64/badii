@@ -35,8 +35,13 @@
                 <span class="help-block">{{ trans('cruds.resource.fields.last_name_helper') }}</span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
                 <label class="required" for="hired_date">{{ trans('cruds.resource.fields.hired_date') }}</label>
                 <input class="form-control date {{ $errors->has('hired_date') ? 'is-invalid' : '' }}" type="text" name="hired_date" id="hired_date" value="{{ old('hired_date', $resource->hired_date) }}" required>
+=======
+                <label for="hired_date">{{ trans('cruds.resource.fields.hired_date') }}</label>
+                <input class="form-control date {{ $errors->has('hired_date') ? 'is-invalid' : '' }}" type="text" name="hired_date" id="hired_date" value="{{ old('hired_date', $resource->hired_date) }}">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                 @if($errors->has('hired_date'))
                     <span class="text-danger">{{ $errors->first('hired_date') }}</span>
                 @endif
@@ -304,8 +309,13 @@
                 <span class="help-block">{{ trans('cruds.resource.fields.home_email_helper') }}</span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
                 <label class="required" for="work_email">{{ trans('cruds.resource.fields.work_email') }}</label>
                 <input class="form-control {{ $errors->has('work_email') ? 'is-invalid' : '' }}" type="email" name="work_email" id="work_email" value="{{ old('work_email', $resource->work_email) }}" required>
+=======
+                <label for="work_email">{{ trans('cruds.resource.fields.work_email') }}</label>
+                <input class="form-control {{ $errors->has('work_email') ? 'is-invalid' : '' }}" type="email" name="work_email" id="work_email" value="{{ old('work_email', $resource->work_email) }}">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                 @if($errors->has('work_email'))
                     <span class="text-danger">{{ $errors->first('work_email') }}</span>
                 @endif
@@ -320,6 +330,7 @@
                 <span class="help-block">{{ trans('cruds.resource.fields.other_email_helper') }}</span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
                 <label for="alt_address_street">{{ trans('cruds.resource.fields.alt_address_street') }}</label>
                 <input class="form-control {{ $errors->has('alt_address_street') ? 'is-invalid' : '' }}" type="text" name="alt_address_street" id="alt_address_street" value="{{ old('alt_address_street', $resource->alt_address_street) }}">
                 @if($errors->has('alt_address_street'))
@@ -364,6 +375,8 @@
                 <span class="help-block">{{ trans('cruds.resource.fields.alt_address_state_helper') }}</span>
             </div>
             <div class="form-group">
+=======
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

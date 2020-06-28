@@ -30,6 +30,12 @@ class StoreUserRequest extends FormRequest
             'is_admin' => [
                 'required',
             ],
+            'status'   => [
+                'required',
+            ],
+            'is_admin' => [
+                'required',
+            ],
             'password' => [
                 'required',
             ],

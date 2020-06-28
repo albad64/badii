@@ -75,7 +75,11 @@
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 @can('benefit_delete')
+<<<<<<< HEAD
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
+=======
+  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
   let deleteButton = {
     text: deleteButtonTrans,
     url: "{{ route('admin.benefits.massDestroy') }}",
@@ -104,6 +108,7 @@
   dtButtons.push(deleteButton)
 @endcan
 
+<<<<<<< HEAD
   let dtOverrideGlobals = {
     buttons: dtButtons,
     processing: true,
@@ -132,12 +137,24 @@
     pageLength: 100,
   };
   let table = $('.datatable-Benefit').DataTable(dtOverrideGlobals);
+=======
+  $.extend(true, $.fn.dataTable.defaults, {
+    orderCellsTop: true,
+    order: [[ 1, 'desc' ]],
+    pageLength: 100,
+  });
+  let table = $('.datatable-Benefit:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
   $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
+<<<<<<< HEAD
 });
+=======
+})
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
 
 </script>
 @endsection

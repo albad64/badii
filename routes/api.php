@@ -8,6 +8,34 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('resources/media', 'ResourcesApiController@storeMedia')->name('resources.storeMedia');
     Route::apiResource('resources', 'ResourcesApiController');
 
+<<<<<<< HEAD
+=======
+    // Users
+    Route::apiResource('users', 'UsersApiController');
+
+    // Currencies
+    Route::apiResource('currencies', 'CurrenciesApiController');
+
+    // Countries
+    Route::apiResource('countries', 'CountriesApiController');
+
+    // Currency Histories
+    Route::apiResource('currency-histories', 'CurrencyHistoryApiController');
+
+    // Companies
+    Route::apiResource('companies', 'CompaniesApiController');
+
+    // Companies Bank Holidays
+    Route::apiResource('companies-bank-holidays', 'CompaniesBankHolidaysApiController');
+
+    // Companies Holidays
+    Route::apiResource('companies-holidays', 'CompaniesHolidaysApiController');
+
+    // Resources
+    Route::post('resources/media', 'ResourcesApiController@storeMedia')->name('resources.storeMedia');
+    Route::apiResource('resources', 'ResourcesApiController');
+
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
     // House Holds
     Route::apiResource('house-holds', 'HouseHoldApiController');
 
@@ -23,6 +51,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Education
     Route::apiResource('education', 'EducationApiController');
+<<<<<<< HEAD
 
     // Holidays
     Route::apiResource('holidays', 'HolidaysApiController');
@@ -46,4 +75,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Trainings
     Route::apiResource('trainings', 'TrainingApiController');
+=======
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
 });

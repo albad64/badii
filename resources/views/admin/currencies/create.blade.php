@@ -46,8 +46,13 @@
                 <span class="help-block">{{ trans('cruds.currency.fields.country_helper') }}</span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
                 <label class="required" for="order_number">{{ trans('cruds.currency.fields.order_number') }}</label>
                 <input class="form-control {{ $errors->has('order_number') ? 'is-invalid' : '' }}" type="number" name="order_number" id="order_number" value="{{ old('order_number', '99') }}" step="1" required>
+=======
+                <label for="order_number">{{ trans('cruds.currency.fields.order_number') }}</label>
+                <input class="form-control {{ $errors->has('order_number') ? 'is-invalid' : '' }}" type="number" name="order_number" id="order_number" value="{{ old('order_number', '') }}" step="1">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                 @if($errors->has('order_number'))
                     <span class="text-danger">{{ $errors->first('order_number') }}</span>
                 @endif
@@ -55,13 +60,28 @@
             </div>
             <div class="form-group">
                 <label for="decimal_digits">{{ trans('cruds.currency.fields.decimal_digits') }}</label>
+<<<<<<< HEAD
                 <input class="form-control {{ $errors->has('decimal_digits') ? 'is-invalid' : '' }}" type="number" name="decimal_digits" id="decimal_digits" value="{{ old('decimal_digits', '2') }}" step="1">
+=======
+                <input class="form-control {{ $errors->has('decimal_digits') ? 'is-invalid' : '' }}" type="number" name="decimal_digits" id="decimal_digits" value="{{ old('decimal_digits', '') }}" step="1">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                 @if($errors->has('decimal_digits'))
                     <span class="text-danger">{{ $errors->first('decimal_digits') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.currency.fields.decimal_digits_helper') }}</span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
+=======
+                <label for="suite">{{ trans('cruds.currency.fields.suite') }}</label>
+                <input class="form-control {{ $errors->has('suite') ? 'is-invalid' : '' }}" type="text" name="suite" id="suite" value="{{ old('suite', '') }}">
+                @if($errors->has('suite'))
+                    <span class="text-danger">{{ $errors->first('suite') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.currency.fields.suite_helper') }}</span>
+            </div>
+            <div class="form-group">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

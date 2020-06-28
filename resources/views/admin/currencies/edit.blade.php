@@ -47,8 +47,13 @@
                 <span class="help-block">{{ trans('cruds.currency.fields.country_helper') }}</span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
                 <label class="required" for="order_number">{{ trans('cruds.currency.fields.order_number') }}</label>
                 <input class="form-control {{ $errors->has('order_number') ? 'is-invalid' : '' }}" type="number" name="order_number" id="order_number" value="{{ old('order_number', $currency->order_number) }}" step="1" required>
+=======
+                <label for="order_number">{{ trans('cruds.currency.fields.order_number') }}</label>
+                <input class="form-control {{ $errors->has('order_number') ? 'is-invalid' : '' }}" type="number" name="order_number" id="order_number" value="{{ old('order_number', $currency->order_number) }}" step="1">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                 @if($errors->has('order_number'))
                     <span class="text-danger">{{ $errors->first('order_number') }}</span>
                 @endif

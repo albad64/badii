@@ -20,7 +20,11 @@ class ResourcesApiController extends Controller
     {
         abort_if(Gate::denies('resource_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+<<<<<<< HEAD
         return new ResourceResource(Resource::with(['birth_country', 'address_country', 'alt_address_country'])->get());
+=======
+        return new ResourceResource(Resource::with(['birth_country', 'address_country'])->get());
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
     }
 
     public function store(StoreResourceRequest $request)
@@ -40,7 +44,11 @@ class ResourcesApiController extends Controller
     {
         abort_if(Gate::denies('resource_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+<<<<<<< HEAD
         return new ResourceResource($resource->load(['birth_country', 'address_country', 'alt_address_country']));
+=======
+        return new ResourceResource($resource->load(['birth_country', 'address_country']));
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
     }
 
     public function update(UpdateResourceRequest $request, Resource $resource)

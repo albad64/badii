@@ -116,7 +116,11 @@
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
+<<<<<<< HEAD
     order: [[ 2, 'desc' ]],
+=======
+    order: [[ 1, 'desc' ]],
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
     pageLength: 100,
   };
   let table = $('.datatable-Education').DataTable(dtOverrideGlobals);

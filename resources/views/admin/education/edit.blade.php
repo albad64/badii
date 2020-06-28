@@ -11,8 +11,13 @@
             @method('PUT')
             @csrf
             <div class="form-group">
+<<<<<<< HEAD
                 <label class="required" for="resource_code_id">{{ trans('cruds.education.fields.resource_code') }}</label>
                 <select class="form-control select2 {{ $errors->has('resource_code') ? 'is-invalid' : '' }}" name="resource_code_id" id="resource_code_id" required>
+=======
+                <label for="resource_code_id">{{ trans('cruds.education.fields.resource_code') }}</label>
+                <select class="form-control select2 {{ $errors->has('resource_code') ? 'is-invalid' : '' }}" name="resource_code_id" id="resource_code_id">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                     @foreach($resource_codes as $id => $resource_code)
                         <option value="{{ $id }}" {{ ($education->resource_code ? $education->resource_code->id : old('resource_code_id')) == $id ? 'selected' : '' }}>{{ $resource_code }}</option>
                     @endforeach

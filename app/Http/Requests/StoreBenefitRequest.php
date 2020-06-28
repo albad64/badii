@@ -19,6 +19,7 @@ class StoreBenefitRequest extends FormRequest
     public function rules()
     {
         return [
+<<<<<<< HEAD
             'resource_code_id'   => [
                 'required',
                 'integer',
@@ -34,6 +35,17 @@ class StoreBenefitRequest extends FormRequest
                 'date_format:' . config('panel.date_format'),
             ],
             'expired_date'       => [
+=======
+            'resource_code_id' => [
+                'required',
+                'integer',
+            ],
+            'assigned_date'    => [
+                'required',
+                'date_format:' . config('panel.date_format'),
+            ],
+            'expired_date'     => [
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                 'date_format:' . config('panel.date_format'),
                 'nullable',
             ],

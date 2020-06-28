@@ -101,7 +101,11 @@
                     </li>
                 @endcan
                 @can('hr_management_access')
+<<<<<<< HEAD
                     <li class="nav-item has-treeview {{ request()->is('admin/resources*') ? 'menu-open' : '' }} {{ request()->is('admin/house-holds*') ? 'menu-open' : '' }} {{ request()->is('admin/contracts*') ? 'menu-open' : '' }} {{ request()->is('admin/salaries*') ? 'menu-open' : '' }} {{ request()->is('admin/benefits*') ? 'menu-open' : '' }} {{ request()->is('admin/holidays*') ? 'menu-open' : '' }}">
+=======
+                    <li class="nav-item has-treeview {{ request()->is('admin/resources*') ? 'menu-open' : '' }} {{ request()->is('admin/house-holds*') ? 'menu-open' : '' }} {{ request()->is('admin/contracts*') ? 'menu-open' : '' }} {{ request()->is('admin/salaries*') ? 'menu-open' : '' }} {{ request()->is('admin/benefits*') ? 'menu-open' : '' }}">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fas fa-address-card">
 
@@ -172,6 +176,7 @@
                                     </a>
                                 </li>
                             @endcan
+<<<<<<< HEAD
                             @can('holiday_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.holidays.index") }}" class="nav-link {{ request()->is('admin/holidays') || request()->is('admin/holidays/*') ? 'active' : '' }}">
@@ -184,6 +189,8 @@
                                     </a>
                                 </li>
                             @endcan
+=======
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                         </ul>
                     </li>
                 @endcan
@@ -287,9 +294,15 @@
                     </li>
                 @endcan
                 @can('skils_management_access')
+<<<<<<< HEAD
                     <li class="nav-item has-treeview {{ request()->is('admin/education*') ? 'menu-open' : '' }} {{ request()->is('admin/job-experiences*') ? 'menu-open' : '' }} {{ request()->is('admin/languages*') ? 'menu-open' : '' }} {{ request()->is('admin/presentations*') ? 'menu-open' : '' }} {{ request()->is('admin/trainings*') ? 'menu-open' : '' }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
                             <i class="fa-fw nav-icon fab fa-buysellads">
+=======
+                    <li class="nav-item has-treeview {{ request()->is('admin/education*') ? 'menu-open' : '' }}">
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="fa-fw nav-icon fas fa-cogs">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
 
                             </i>
                             <p>
@@ -310,6 +323,7 @@
                                     </a>
                                 </li>
                             @endcan
+<<<<<<< HEAD
                             @can('job_experience_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.job-experiences.index") }}" class="nav-link {{ request()->is('admin/job-experiences') || request()->is('admin/job-experiences/*') ? 'active' : '' }}">
@@ -409,6 +423,8 @@
                                     </a>
                                 </li>
                             @endcan
+=======
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                         </ul>
                     </li>
                 @endcan

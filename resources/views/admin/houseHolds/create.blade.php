@@ -22,16 +22,26 @@
                 <span class="help-block">{{ trans('cruds.houseHold.fields.resource_code_helper') }}</span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
                 <label class="required" for="prog">{{ trans('cruds.houseHold.fields.prog') }}</label>
                 <input class="form-control {{ $errors->has('prog') ? 'is-invalid' : '' }}" type="number" name="prog" id="prog" value="{{ old('prog', '') }}" step="1" required>
+=======
+                <label for="prog">{{ trans('cruds.houseHold.fields.prog') }}</label>
+                <input class="form-control {{ $errors->has('prog') ? 'is-invalid' : '' }}" type="number" name="prog" id="prog" value="{{ old('prog', '') }}" step="1">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                 @if($errors->has('prog'))
                     <span class="text-danger">{{ $errors->first('prog') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.houseHold.fields.prog_helper') }}</span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
                 <label class="required">{{ trans('cruds.houseHold.fields.relationship_type') }}</label>
                 <select class="form-control {{ $errors->has('relationship_type') ? 'is-invalid' : '' }}" name="relationship_type" id="relationship_type" required>
+=======
+                <label>{{ trans('cruds.houseHold.fields.relationship_type') }}</label>
+                <select class="form-control {{ $errors->has('relationship_type') ? 'is-invalid' : '' }}" name="relationship_type" id="relationship_type">
+>>>>>>> quickadminpanel_2020_06_28_07_35_51
                     <option value disabled {{ old('relationship_type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                     @foreach(App\HouseHold::RELATIONSHIP_TYPE_SELECT as $key => $label)
                         <option value="{{ $key }}" {{ old('relationship_type', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
