@@ -23,6 +23,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    const STATUS_SELECT = [
+        'Inactive' => 'Inactive',
+        'Active'   => 'Active',
+    ];
+
     protected $dates = [
         'email_verified_at',
         'created_at',
@@ -32,10 +37,14 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'status',
         'email',
+        'is_admin',
+        'external_auth',
         'email_verified_at',
         'password',
         'remember_token',
+        'suite',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -33,10 +33,34 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.user.fields.status') }}
+                        </th>
+                        <td>
+                            {{ App\User::STATUS_SELECT[$user->status] ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.user.fields.email') }}
                         </th>
                         <td>
                             {{ $user->email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.is_admin') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $user->is_admin ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.user.fields.external_auth') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $user->external_auth ? 'checked' : '' }}>
                         </td>
                     </tr>
                     <tr>

@@ -29,7 +29,16 @@
                             {{ trans('cruds.user.fields.name') }}
                         </th>
                         <th>
+                            {{ trans('cruds.user.fields.status') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.user.fields.email') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.is_admin') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.user.fields.external_auth') }}
                         </th>
                         <th>
                             {{ trans('cruds.user.fields.email_verified_at') }}
@@ -55,7 +64,18 @@
                                 {{ $user->name ?? '' }}
                             </td>
                             <td>
+                                {{ App\User::STATUS_SELECT[$user->status] ?? '' }}
+                            </td>
+                            <td>
                                 {{ $user->email ?? '' }}
+                            </td>
+                            <td>
+                                <span style="display:none">{{ $user->is_admin ?? '' }}</span>
+                                <input type="checkbox" disabled="disabled" {{ $user->is_admin ? 'checked' : '' }}>
+                            </td>
+                            <td>
+                                <span style="display:none">{{ $user->external_auth ?? '' }}</span>
+                                <input type="checkbox" disabled="disabled" {{ $user->external_auth ? 'checked' : '' }}>
                             </td>
                             <td>
                                 {{ $user->email_verified_at ?? '' }}
@@ -136,7 +156,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
+    order: [[ 2, 'desc' ]],
     pageLength: 100,
   });
   let table = $('.datatable-User:not(.ajaxTable)').DataTable({ buttons: dtButtons })

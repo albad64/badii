@@ -22,6 +22,12 @@ class StoreUserRequest extends FormRequest
             'name'     => [
                 'required',
             ],
+            'status'   => [
+                'required',
+            ],
+            'is_admin' => [
+                'required',
+            ],
             'password' => [
                 'required',
             ],
