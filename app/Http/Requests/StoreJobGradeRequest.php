@@ -20,6 +20,8 @@ class StoreJobGradeRequest extends FormRequest
     {
         return [
             'job_grade_name'      => [
+                'min:1',
+                'max:100',
                 'required',
                 'unique:job_grades',
             ],

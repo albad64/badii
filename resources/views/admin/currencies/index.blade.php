@@ -146,7 +146,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 6, 'desc' ]],
+    order: [[ 6, 'asc' ]],
     pageLength: 100,
   });
   let table = $('.datatable-Currency:not(.ajaxTable)').DataTable({ buttons: dtButtons })
