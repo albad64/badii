@@ -88,7 +88,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('education/destroy', 'EducationController@massDestroy')->name('education.massDestroy');
     Route::resource('education', 'EducationController');
 
-<<<<<<< HEAD
     // Holidays
     Route::delete('holidays/destroy', 'HolidaysController@massDestroy')->name('holidays.massDestroy');
     Route::resource('holidays', 'HolidaysController');
@@ -125,8 +124,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('trainings/destroy', 'TrainingController@massDestroy')->name('trainings.massDestroy');
     Route::resource('trainings', 'TrainingController');
 
-=======
->>>>>>> quickadminpanel_2020_06_28_07_35_51
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {

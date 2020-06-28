@@ -11,13 +11,8 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-<<<<<<< HEAD
                 <label class="required" for="resource_code_id">{{ trans('cruds.salary.fields.resource_code') }}</label>
                 <select class="form-control select2 {{ $errors->has('resource_code') ? 'is-invalid' : '' }}" name="resource_code_id" id="resource_code_id" required>
-=======
-                <label for="resource_code_id">{{ trans('cruds.salary.fields.resource_code') }}</label>
-                <select class="form-control select2 {{ $errors->has('resource_code') ? 'is-invalid' : '' }}" name="resource_code_id" id="resource_code_id">
->>>>>>> quickadminpanel_2020_06_28_07_35_51
                     @foreach($resource_codes as $id => $resource_code)
                         <option value="{{ $id }}" {{ ($salary->resource_code ? $salary->resource_code->id : old('resource_code_id')) == $id ? 'selected' : '' }}>{{ $resource_code }}</option>
                     @endforeach
@@ -28,13 +23,8 @@
                 <span class="help-block">{{ trans('cruds.salary.fields.resource_code_helper') }}</span>
             </div>
             <div class="form-group">
-<<<<<<< HEAD
                 <label class="required" for="start_date">{{ trans('cruds.salary.fields.start_date') }}</label>
                 <input class="form-control date {{ $errors->has('start_date') ? 'is-invalid' : '' }}" type="text" name="start_date" id="start_date" value="{{ old('start_date', $salary->start_date) }}" required>
-=======
-                <label for="start_date">{{ trans('cruds.salary.fields.start_date') }}</label>
-                <input class="form-control date {{ $errors->has('start_date') ? 'is-invalid' : '' }}" type="text" name="start_date" id="start_date" value="{{ old('start_date', $salary->start_date) }}">
->>>>>>> quickadminpanel_2020_06_28_07_35_51
                 @if($errors->has('start_date'))
                     <span class="text-danger">{{ $errors->first('start_date') }}</span>
                 @endif
@@ -64,13 +54,8 @@
                 <span class="help-block">{{ trans('cruds.salary.fields.work_country_helper') }}</span>
             </div>
             <div class="form-group">
-<<<<<<< HEAD
                 <label class="required" for="week_working_string">{{ trans('cruds.salary.fields.week_working_string') }}</label>
                 <input class="form-control {{ $errors->has('week_working_string') ? 'is-invalid' : '' }}" type="text" name="week_working_string" id="week_working_string" value="{{ old('week_working_string', $salary->week_working_string) }}" required>
-=======
-                <label for="week_working_string">{{ trans('cruds.salary.fields.week_working_string') }}</label>
-                <input class="form-control {{ $errors->has('week_working_string') ? 'is-invalid' : '' }}" type="text" name="week_working_string" id="week_working_string" value="{{ old('week_working_string', $salary->week_working_string) }}">
->>>>>>> quickadminpanel_2020_06_28_07_35_51
                 @if($errors->has('week_working_string'))
                     <span class="text-danger">{{ $errors->first('week_working_string') }}</span>
                 @endif

@@ -291,7 +291,6 @@
                             {{ $resource->other_email }}
                         </td>
                     </tr>
-<<<<<<< HEAD
                     <tr>
                         <th>
                             {{ trans('cruds.resource.fields.alt_address_street') }}
@@ -332,8 +331,6 @@
                             {{ $resource->alt_address_state }}
                         </td>
                     </tr>
-=======
->>>>>>> quickadminpanel_2020_06_28_07_35_51
                 </tbody>
             </table>
             <div class="form-group">

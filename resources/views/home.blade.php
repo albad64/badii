@@ -55,13 +55,10 @@
                             </table>
                         </div>
 
-<<<<<<< HEAD
                         <div class="{{ $chart2->options['column_class'] }}">
                             <h3>{!! $chart2->options['chart_title'] !!}</h3>
                             {!! $chart2->renderHtml() !!}
                         </div>
-=======
->>>>>>> quickadminpanel_2020_06_28_07_35_51
                     </div>
                 </div>
             </div>
@@ -71,9 +68,5 @@
 @endsection
 @section('scripts')
 @parent
-<<<<<<< HEAD
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart2->renderJs() !!}
-=======
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
->>>>>>> quickadminpanel_2020_06_28_07_35_51
 @endsection
