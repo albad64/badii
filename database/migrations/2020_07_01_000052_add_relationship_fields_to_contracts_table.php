@@ -15,6 +15,8 @@ class AddRelationshipFieldsToContractsTable extends Migration
             $table->foreign('company_id', 'company_fk_1728515')->references('id')->on('companies');
             $table->unsignedInteger('report_resource_code_id')->nullable();
             $table->foreign('report_resource_code_id', 'report_resource_code_fk_1728530')->references('id')->on('resources');
+            $table->unsignedInteger('team_id')->nullable();
+            $table->foreign('team_id', 'team_fk_1756650')->references('id')->on('teams');
         });
     }
 }

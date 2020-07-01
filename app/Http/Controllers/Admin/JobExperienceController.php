@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyJobExperienceRequest;
 use App\Http\Requests\StoreJobExperienceRequest;
@@ -16,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JobExperienceController extends Controller
 {
-    use MediaUploadingTrait;
+    use MediaUploadingTrait, CsvImportTrait;
 
     public function index()
     {

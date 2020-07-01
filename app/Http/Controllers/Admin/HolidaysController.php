@@ -11,79 +11,18 @@ use App\Resource;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Yajra\DataTables\Facades\DataTables;
 
 class HolidaysController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         abort_if(Gate::denies('holiday_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        if ($request->ajax()) {
-            $query = Holiday::with(['resource_code'])->select(sprintf('%s.*', (new Holiday)->table));
-            $table = Datatables::of($query);
-
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
-
-            $table->editColumn('actions', function ($row) {
-                $viewGate      = 'holiday_show';
-                $editGate      = 'holiday_edit';
-                $deleteGate    = 'holiday_delete';
-                $crudRoutePart = 'holidays';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
-            });
-
-            $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : "";
-            });
-            $table->addColumn('resource_code_resource_code', function ($row) {
-                return $row->resource_code ? $row->resource_code->resource_code : '';
-            });
-
-            $table->editColumn('resource_code.first_name', function ($row) {
-                return $row->resource_code ? (is_string($row->resource_code) ? $row->resource_code : $row->resource_code->first_name) : '';
-            });
-            $table->editColumn('resource_code.last_name', function ($row) {
-                return $row->resource_code ? (is_string($row->resource_code) ? $row->resource_code : $row->resource_code->last_name) : '';
-            });
-            $table->editColumn('holidays_type', function ($row) {
-                return $row->holidays_type ? Holiday::HOLIDAYS_TYPE_SELECT[$row->holidays_type] : '';
-            });
-            $table->editColumn('holiday_year', function ($row) {
-                return $row->holiday_year ? $row->holiday_year : "";
-            });
-            $table->editColumn('holiday_month', function ($row) {
-                return $row->holiday_month ? $row->holiday_month : "";
-            });
-            $table->editColumn('holiday_residual', function ($row) {
-                return $row->holiday_residual ? $row->holiday_residual : "";
-            });
-            $table->editColumn('holiday_actual', function ($row) {
-                return $row->holiday_actual ? $row->holiday_actual : "";
-            });
-            $table->editColumn('holiday_enjoyed', function ($row) {
-                return $row->holiday_enjoyed ? $row->holiday_enjoyed : "";
-            });
-            $table->editColumn('status', function ($row) {
-                return $row->status ? Holiday::STATUS_RADIO[$row->status] : '';
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'resource_code']);
-
-            return $table->make(true);
-        }
+        $holidays = Holiday::all();
 
         $resources = Resource::get()->pluck('resource_code')->toArray();
 
-        return view('admin.holidays.index', compact('resources'));
+        return view('admin.holidays.index', compact('holidays', 'resources'));
     }
 
     public function create()

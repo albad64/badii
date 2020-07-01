@@ -11,71 +11,16 @@ use App\Resource;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Yajra\DataTables\Facades\DataTables;
 
 class HouseHoldController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         abort_if(Gate::denies('house_hold_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        if ($request->ajax()) {
-            $query = HouseHold::with(['resource_code'])->select(sprintf('%s.*', (new HouseHold)->table));
-            $table = Datatables::of($query);
+        $houseHolds = HouseHold::all();
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
-
-            $table->editColumn('actions', function ($row) {
-                $viewGate      = 'house_hold_show';
-                $editGate      = 'house_hold_edit';
-                $deleteGate    = 'house_hold_delete';
-                $crudRoutePart = 'house-holds';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
-            });
-
-            $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : "";
-            });
-            $table->addColumn('resource_code_resource_code', function ($row) {
-                return $row->resource_code ? $row->resource_code->resource_code : '';
-            });
-
-            $table->editColumn('resource_code.first_name', function ($row) {
-                return $row->resource_code ? (is_string($row->resource_code) ? $row->resource_code : $row->resource_code->first_name) : '';
-            });
-            $table->editColumn('resource_code.last_name', function ($row) {
-                return $row->resource_code ? (is_string($row->resource_code) ? $row->resource_code : $row->resource_code->last_name) : '';
-            });
-            $table->editColumn('prog', function ($row) {
-                return $row->prog ? $row->prog : "";
-            });
-            $table->editColumn('relationship_type', function ($row) {
-                return $row->relationship_type ? HouseHold::RELATIONSHIP_TYPE_SELECT[$row->relationship_type] : '';
-            });
-            $table->editColumn('relative_first_name', function ($row) {
-                return $row->relative_first_name ? $row->relative_first_name : "";
-            });
-            $table->editColumn('relative_last_name', function ($row) {
-                return $row->relative_last_name ? $row->relative_last_name : "";
-            });
-            $table->editColumn('percentage_charged', function ($row) {
-                return $row->percentage_charged ? $row->percentage_charged : "";
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'resource_code']);
-
-            return $table->make(true);
-        }
-
-        return view('admin.houseHolds.index');
+        return view('admin.houseHolds.index', compact('houseHolds'));
     }
 
     public function create()

@@ -3,23 +3,17 @@
 namespace App;
 
 use App\Traits\Auditable;
+use App\Traits\MultiTenantModelTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
 use \DateTimeInterface;
 
-class Resource extends Model implements HasMedia
+class Resource extends Model
 {
-    use SoftDeletes, HasMediaTrait, Auditable;
+    use SoftDeletes, MultiTenantModelTrait, Auditable;
 
     public $table = 'resources';
-
-    protected $appends = [
-        'photo',
-    ];
 
     const ADDRESS_STATE_SELECT = [
 
@@ -105,16 +99,12 @@ class Resource extends Model implements HasMedia
         'created_at',
         'updated_at',
         'deleted_at',
+        'team_id',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
-    }
-
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('thumb')->width(50)->height(50);
     }
 
     public function resourceCodeHouseHolds()
@@ -157,18 +147,6 @@ class Resource extends Model implements HasMedia
         $this->attributes['termination_date'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
     }
 
-    public function getPhotoAttribute()
-    {
-        $file = $this->getMedia('photo')->last();
-
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-        }
-
-        return $file;
-    }
-
     public function getBirthDateAttribute($value)
     {
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
@@ -192,5 +170,10 @@ class Resource extends Model implements HasMedia
     public function alt_address_country()
     {
         return $this->belongsTo(Country::class, 'alt_address_country_id');
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 }

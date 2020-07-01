@@ -86,6 +86,14 @@
                 <span class="help-block">{{ trans('cruds.company.fields.country_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="suite">{{ trans('cruds.company.fields.suite') }}</label>
+                <input class="form-control {{ $errors->has('suite') ? 'is-invalid' : '' }}" type="text" name="suite" id="suite" value="{{ old('suite', '') }}">
+                @if($errors->has('suite'))
+                    <span class="text-danger">{{ $errors->first('suite') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.company.fields.suite_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

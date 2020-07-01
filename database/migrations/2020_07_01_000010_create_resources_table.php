@@ -37,7 +37,7 @@ class CreateResourcesTable extends Migration
             $table->string('home_phone')->nullable();
             $table->string('office_phone')->nullable();
             $table->string('home_email')->nullable();
-            $table->string('work_email')->unique();
+            $table->string('work_email');
             $table->string('other_email')->nullable();
             $table->string('resource_code')->unique();
             $table->string('suite_users')->nullable();

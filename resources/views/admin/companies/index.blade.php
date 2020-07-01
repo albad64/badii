@@ -50,6 +50,9 @@
                             {{ trans('cruds.company.fields.country') }}
                         </th>
                         <th>
+                            {{ trans('cruds.company.fields.suite') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -88,6 +91,9 @@
                                 @foreach($company->countries as $key => $item)
                                     <span class="badge badge-info">{{ $item->name }}</span>
                                 @endforeach
+                            </td>
+                            <td>
+                                {{ $company->suite ?? '' }}
                             </td>
                             <td>
                                 @can('company_show')

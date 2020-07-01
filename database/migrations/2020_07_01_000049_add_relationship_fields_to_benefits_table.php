@@ -13,6 +13,8 @@ class AddRelationshipFieldsToBenefitsTable extends Migration
             $table->foreign('resource_code_id', 'resource_code_fk_1734067')->references('id')->on('resources');
             $table->unsignedInteger('currency_id')->nullable();
             $table->foreign('currency_id', 'currency_fk_1734072')->references('id')->on('currencies');
+            $table->unsignedInteger('team_id')->nullable();
+            $table->foreign('team_id', 'team_fk_1756651')->references('id')->on('teams');
         });
     }
 }

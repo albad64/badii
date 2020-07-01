@@ -15,6 +15,8 @@ class AddRelationshipFieldsToResourcesTable extends Migration
             $table->foreign('address_country_id', 'address_country_fk_1728359')->references('id')->on('countries');
             $table->unsignedInteger('alt_address_country_id')->nullable();
             $table->foreign('alt_address_country_id', 'alt_address_country_fk_1734180')->references('id')->on('countries');
+            $table->unsignedInteger('team_id')->nullable();
+            $table->foreign('team_id', 'team_fk_1756649')->references('id')->on('teams');
         });
     }
 }

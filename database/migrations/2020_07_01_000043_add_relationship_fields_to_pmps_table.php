@@ -15,6 +15,8 @@ class AddRelationshipFieldsToPmpsTable extends Migration
             $table->foreign('current_grade_id', 'current_grade_fk_1734340')->references('id')->on('job_grades');
             $table->unsignedInteger('expected_grade_id');
             $table->foreign('expected_grade_id', 'expected_grade_fk_1734341')->references('id')->on('job_grades');
+            $table->unsignedInteger('team_id')->nullable();
+            $table->foreign('team_id', 'team_fk_1756657')->references('id')->on('teams');
         });
     }
 }

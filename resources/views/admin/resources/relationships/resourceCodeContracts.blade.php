@@ -246,7 +246,7 @@
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
     order: [[ 2, 'asc' ]],
-    pageLength: 100,
+    pageLength: 10,
   });
   let table = $('.datatable-resourceCodeContracts:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){

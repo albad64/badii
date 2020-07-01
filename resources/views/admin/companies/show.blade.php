@@ -89,6 +89,14 @@
                             @endforeach
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.company.fields.suite') }}
+                        </th>
+                        <td>
+                            {{ $company->suite }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

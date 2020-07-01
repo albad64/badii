@@ -16,6 +16,7 @@ class CreateCompaniesTable extends Migration
             $table->string('project_prefix');
             $table->float('legal_working_hours', 15, 2);
             $table->float('monthly_instalments', 15, 2)->nullable();
+            $table->string('suite')->nullable();
             $table->timestamps();
         });
     }

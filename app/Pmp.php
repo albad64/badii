@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Traits\Auditable;
+use App\Traits\MultiTenantModelTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,7 +11,7 @@ use \DateTimeInterface;
 
 class Pmp extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, MultiTenantModelTrait, Auditable;
 
     public $table = 'pmps';
 
@@ -34,6 +36,7 @@ class Pmp extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'team_id',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -79,5 +82,10 @@ class Pmp extends Model
     public function setObjectiveEndEvalDateAttribute($value)
     {
         $this->attributes['objective_end_eval_date'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 }

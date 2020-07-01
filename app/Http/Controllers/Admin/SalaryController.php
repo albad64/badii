@@ -10,6 +10,7 @@ use App\Http\Requests\StoreSalaryRequest;
 use App\Http\Requests\UpdateSalaryRequest;
 use App\Resource;
 use App\Salary;
+use App\Team;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class SalaryController extends Controller
         abort_if(Gate::denies('salary_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Salary::with(['resource_code', 'work_country', 'currency'])->select(sprintf('%s.*', (new Salary)->table));
+            $query = Salary::with(['resource_code', 'work_country', 'currency', 'team'])->select(sprintf('%s.*', (new Salary)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -122,7 +123,12 @@ class SalaryController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.salaries.index');
+        $resources  = Resource::get();
+        $countries  = Country::get();
+        $currencies = Currency::get();
+        $teams      = Team::get();
+
+        return view('admin.salaries.index', compact('resources', 'countries', 'currencies', 'teams'));
     }
 
     public function create()
@@ -155,7 +161,7 @@ class SalaryController extends Controller
 
         $currencies = Currency::all()->pluck('code', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $salary->load('resource_code', 'work_country', 'currency');
+        $salary->load('resource_code', 'work_country', 'currency', 'team');
 
         return view('admin.salaries.edit', compact('resource_codes', 'work_countries', 'currencies', 'salary'));
     }
@@ -171,7 +177,7 @@ class SalaryController extends Controller
     {
         abort_if(Gate::denies('salary_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $salary->load('resource_code', 'work_country', 'currency');
+        $salary->load('resource_code', 'work_country', 'currency', 'team');
 
         return view('admin.salaries.show', compact('salary'));
     }

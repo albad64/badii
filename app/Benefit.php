@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Auditable;
+use App\Traits\MultiTenantModelTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +14,7 @@ use \DateTimeInterface;
 
 class Benefit extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait, Auditable;
+    use SoftDeletes, MultiTenantModelTrait, HasMediaTrait, Auditable;
 
     public $table = 'benefits';
 
@@ -49,6 +50,7 @@ class Benefit extends Model implements HasMedia
         'created_at',
         'updated_at',
         'deleted_at',
+        'team_id',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -89,5 +91,10 @@ class Benefit extends Model implements HasMedia
     public function currency()
     {
         return $this->belongsTo(Currency::class, 'currency_id');
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 }

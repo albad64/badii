@@ -81,18 +81,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.resource.fields.photo') }}
-                        </th>
-                        <td>
-                            @if($resource->photo)
-                                <a href="{{ $resource->photo->getUrl() }}" target="_blank">
-                                    <img src="{{ $resource->photo->getUrl('thumb') }}" width="50px" height="50px">
-                                </a>
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.resource.fields.gender') }}
                         </th>
                         <td>

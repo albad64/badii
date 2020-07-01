@@ -20,7 +20,7 @@ class BenefitApiController extends Controller
     {
         abort_if(Gate::denies('benefit_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new BenefitResource(Benefit::with(['resource_code', 'currency'])->get());
+        return new BenefitResource(Benefit::with(['resource_code', 'currency', 'team'])->get());
     }
 
     public function store(StoreBenefitRequest $request)
@@ -36,7 +36,7 @@ class BenefitApiController extends Controller
     {
         abort_if(Gate::denies('benefit_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new BenefitResource($benefit->load(['resource_code', 'currency']));
+        return new BenefitResource($benefit->load(['resource_code', 'currency', 'team']));
     }
 
     public function update(UpdateBenefitRequest $request, Benefit $benefit)

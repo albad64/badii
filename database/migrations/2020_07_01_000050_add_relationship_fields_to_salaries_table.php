@@ -15,6 +15,8 @@ class AddRelationshipFieldsToSalariesTable extends Migration
             $table->foreign('work_country_id', 'work_country_fk_1728541')->references('id')->on('countries');
             $table->unsignedInteger('currency_id')->nullable();
             $table->foreign('currency_id', 'currency_fk_1728551')->references('id')->on('currencies');
+            $table->unsignedInteger('team_id')->nullable();
+            $table->foreign('team_id', 'team_fk_1756648')->references('id')->on('teams');
         });
     }
 }

@@ -59,8 +59,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Resources
     Route::delete('resources/destroy', 'ResourcesController@massDestroy')->name('resources.massDestroy');
-    Route::post('resources/media', 'ResourcesController@storeMedia')->name('resources.storeMedia');
-    Route::post('resources/ckmedia', 'ResourcesController@storeCKEditorImages')->name('resources.storeCKEditorImages');
     Route::resource('resources', 'ResourcesController');
 
     // House Holds
@@ -100,6 +98,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('job-experiences/destroy', 'JobExperienceController@massDestroy')->name('job-experiences.massDestroy');
     Route::post('job-experiences/media', 'JobExperienceController@storeMedia')->name('job-experiences.storeMedia');
     Route::post('job-experiences/ckmedia', 'JobExperienceController@storeCKEditorImages')->name('job-experiences.storeCKEditorImages');
+    Route::post('job-experiences/parse-csv-import', 'JobExperienceController@parseCsvImport')->name('job-experiences.parseCsvImport');
+    Route::post('job-experiences/process-csv-import', 'JobExperienceController@processCsvImport')->name('job-experiences.processCsvImport');
     Route::resource('job-experiences', 'JobExperienceController');
 
     // Languages
@@ -124,7 +124,38 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('trainings/destroy', 'TrainingController@massDestroy')->name('trainings.massDestroy');
     Route::resource('trainings', 'TrainingController');
 
+    // Teams
+    Route::delete('teams/destroy', 'TeamController@massDestroy')->name('teams.massDestroy');
+    Route::resource('teams', 'TeamController');
+
+    // Task Statuses
+    Route::delete('task-statuses/destroy', 'TaskStatusController@massDestroy')->name('task-statuses.massDestroy');
+    Route::resource('task-statuses', 'TaskStatusController');
+
+    // Task Tags
+    Route::delete('task-tags/destroy', 'TaskTagController@massDestroy')->name('task-tags.massDestroy');
+    Route::resource('task-tags', 'TaskTagController');
+
+    // Tasks
+    Route::delete('tasks/destroy', 'TaskController@massDestroy')->name('tasks.massDestroy');
+    Route::post('tasks/media', 'TaskController@storeMedia')->name('tasks.storeMedia');
+    Route::post('tasks/ckmedia', 'TaskController@storeCKEditorImages')->name('tasks.storeCKEditorImages');
+    Route::resource('tasks', 'TaskController');
+
+    // Tasks Calendars
+    Route::resource('tasks-calendars', 'TasksCalendarController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    Route::get('system-calendar', 'SystemCalendarController@index')->name('systemCalendar');
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
+    Route::get('messenger', 'MessengerController@index')->name('messenger.index');
+    Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
+    Route::post('messenger', 'MessengerController@storeTopic')->name('messenger.storeTopic');
+    Route::get('messenger/inbox', 'MessengerController@showInbox')->name('messenger.showInbox');
+    Route::get('messenger/outbox', 'MessengerController@showOutbox')->name('messenger.showOutbox');
+    Route::get('messenger/{topic}', 'MessengerController@showMessages')->name('messenger.showMessages');
+    Route::delete('messenger/{topic}', 'MessengerController@destroyTopic')->name('messenger.destroyTopic');
+    Route::post('messenger/{topic}/reply', 'MessengerController@replyToTopic')->name('messenger.reply');
+    Route::get('messenger/{topic}/reply', 'MessengerController@showReply')->name('messenger.showReply');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
 // Change password
