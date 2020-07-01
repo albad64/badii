@@ -17,7 +17,7 @@ class PmpApiController extends Controller
     {
         abort_if(Gate::denies('pmp_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new PmpResource(Pmp::with(['resource_code', 'current_grade', 'expected_grade'])->get());
+        return new PmpResource(Pmp::with(['resource_code', 'current_grade', 'expected_grade', 'team'])->get());
     }
 
     public function store(StorePmpRequest $request)
@@ -33,7 +33,7 @@ class PmpApiController extends Controller
     {
         abort_if(Gate::denies('pmp_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new PmpResource($pmp->load(['resource_code', 'current_grade', 'expected_grade']));
+        return new PmpResource($pmp->load(['resource_code', 'current_grade', 'expected_grade', 'team']));
     }
 
     public function update(UpdatePmpRequest $request, Pmp $pmp)

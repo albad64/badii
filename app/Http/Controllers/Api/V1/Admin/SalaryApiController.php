@@ -17,7 +17,7 @@ class SalaryApiController extends Controller
     {
         abort_if(Gate::denies('salary_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new SalaryResource(Salary::with(['resource_code', 'work_country', 'currency'])->get());
+        return new SalaryResource(Salary::with(['resource_code', 'work_country', 'currency', 'team'])->get());
     }
 
     public function store(StoreSalaryRequest $request)
@@ -33,7 +33,7 @@ class SalaryApiController extends Controller
     {
         abort_if(Gate::denies('salary_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new SalaryResource($salary->load(['resource_code', 'work_country', 'currency']));
+        return new SalaryResource($salary->load(['resource_code', 'work_country', 'currency', 'team']));
     }
 
     public function update(UpdateSalaryRequest $request, Salary $salary)

@@ -27,6 +27,7 @@ class Company extends Model
         'project_prefix',
         'legal_working_hours',
         'monthly_instalments',
+        'suite',
         'created_at',
         'updated_at',
         'deleted_at',

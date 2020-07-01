@@ -42,7 +42,6 @@ class StoreResourceRequest extends FormRequest
             ],
             'work_email'       => [
                 'required',
-                'unique:resources',
             ],
         ];
     }

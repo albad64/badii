@@ -5,7 +5,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::apiResource('currency-histories', 'CurrencyHistoryApiController');
 
     // Resources
-    Route::post('resources/media', 'ResourcesApiController@storeMedia')->name('resources.storeMedia');
     Route::apiResource('resources', 'ResourcesApiController');
 
     // House Holds
@@ -46,4 +45,17 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Trainings
     Route::apiResource('trainings', 'TrainingApiController');
+
+    // Teams
+    Route::apiResource('teams', 'TeamApiController');
+
+    // Task Statuses
+    Route::apiResource('task-statuses', 'TaskStatusApiController');
+
+    // Task Tags
+    Route::apiResource('task-tags', 'TaskTagApiController');
+
+    // Tasks
+    Route::post('tasks/media', 'TaskApiController@storeMedia')->name('tasks.storeMedia');
+    Route::apiResource('tasks', 'TaskApiController');
 });

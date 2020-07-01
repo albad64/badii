@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Auditable;
+use App\Traits\MultiTenantModelTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,7 @@ use \DateTimeInterface;
 
 class Salary extends Model
 {
-    use SoftDeletes, Auditable;
+    use SoftDeletes, MultiTenantModelTrait, Auditable;
 
     public $table = 'salaries';
 
@@ -73,6 +74,7 @@ class Salary extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'team_id',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -143,5 +145,10 @@ class Salary extends Model
     public function setExpectedNextLsbDateAttribute($value)
     {
         $this->attributes['expected_next_lsb_date'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 }

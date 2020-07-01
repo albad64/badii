@@ -46,9 +46,6 @@
                         {{ trans('cruds.resource.fields.title') }}
                     </th>
                     <th>
-                        {{ trans('cruds.resource.fields.photo') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.resource.fields.gender') }}
                     </th>
                     <th>
@@ -165,7 +162,7 @@
                         <select class="search" strict="true">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach(App\Resource::STATUS_SELECT as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $key }}">{{ $item }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -173,17 +170,15 @@
                         <select class="search" strict="true">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach(App\Resource::TITLE_SELECT as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $key }}">{{ $item }}</option>
                             @endforeach
                         </select>
-                    </td>
-                    <td>
                     </td>
                     <td>
                         <select class="search" strict="true">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach(App\Resource::GENDER_SELECT as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $key }}">{{ $item }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -196,7 +191,7 @@
                         <select class="search">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach($countries as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -204,7 +199,7 @@
                         <select class="search" strict="true">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach(App\Resource::NATIONALITY_SELECT as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $key }}">{{ $item }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -212,7 +207,7 @@
                         <select class="search" strict="true">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach(App\Resource::MARITAL_STATUS_SELECT as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $key }}">{{ $item }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -251,7 +246,7 @@
                         <select class="search">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach($countries as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -259,7 +254,7 @@
                         <select class="search" strict="true">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach(App\Resource::ADDRESS_STATE_SELECT as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $key }}">{{ $item }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -294,7 +289,7 @@
                         <select class="search">
                             <option value>{{ trans('global.all') }}</option>
                             @foreach($countries as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
                     </td>
@@ -364,7 +359,6 @@
 { data: 'termination_date', name: 'termination_date' },
 { data: 'status', name: 'status' },
 { data: 'title', name: 'title' },
-{ data: 'photo', name: 'photo', sortable: false, searchable: false },
 { data: 'gender', name: 'gender' },
 { data: 'birth_date', name: 'birth_date' },
 { data: 'birth_city', name: 'birth_city' },
@@ -398,8 +392,8 @@
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
-    order: [[ 4, 'desc' ]],
-    pageLength: 100,
+    order: [[ 4, 'asc' ]],
+    pageLength: 10,
   };
   let table = $('.datatable-Resource').DataTable(dtOverrideGlobals);
   $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){

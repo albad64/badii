@@ -42,7 +42,6 @@ class UpdateResourceRequest extends FormRequest
             ],
             'work_email'       => [
                 'required',
-                'unique:resources,work_email,' . request()->route('resource')->id,
             ],
         ];
     }

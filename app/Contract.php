@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Auditable;
+use App\Traits\MultiTenantModelTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,7 @@ use \DateTimeInterface;
 
 class Contract extends Model
 {
-    use SoftDeletes, Auditable;
+    use SoftDeletes, MultiTenantModelTrait, Auditable;
 
     public $table = 'contracts';
 
@@ -118,6 +119,7 @@ class Contract extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'team_id',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -178,5 +180,10 @@ class Contract extends Model
     public function report_resource_code()
     {
         return $this->belongsTo(Resource::class, 'report_resource_code_id');
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class, 'team_id');
     }
 }

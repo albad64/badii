@@ -17,7 +17,7 @@ class ContractsApiController extends Controller
     {
         abort_if(Gate::denies('contract_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ContractResource(Contract::with(['resource_code', 'company', 'report_resource_code'])->get());
+        return new ContractResource(Contract::with(['resource_code', 'company', 'report_resource_code', 'team'])->get());
     }
 
     public function store(StoreContractRequest $request)
@@ -33,7 +33,7 @@ class ContractsApiController extends Controller
     {
         abort_if(Gate::denies('contract_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ContractResource($contract->load(['resource_code', 'company', 'report_resource_code']));
+        return new ContractResource($contract->load(['resource_code', 'company', 'report_resource_code', 'team']));
     }
 
     public function update(UpdateContractRequest $request, Contract $contract)

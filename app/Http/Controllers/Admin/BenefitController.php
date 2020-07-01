@@ -10,6 +10,7 @@ use App\Http\Requests\MassDestroyBenefitRequest;
 use App\Http\Requests\StoreBenefitRequest;
 use App\Http\Requests\UpdateBenefitRequest;
 use App\Resource;
+use App\Team;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\Models\Media;
@@ -25,7 +26,7 @@ class BenefitController extends Controller
         abort_if(Gate::denies('benefit_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Benefit::with(['resource_code', 'currency'])->select(sprintf('%s.*', (new Benefit)->table));
+            $query = Benefit::with(['resource_code', 'currency', 'team'])->select(sprintf('%s.*', (new Benefit)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -85,7 +86,11 @@ class BenefitController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.benefits.index');
+        $resources  = Resource::get();
+        $currencies = Currency::get();
+        $teams      = Team::get();
+
+        return view('admin.benefits.index', compact('resources', 'currencies', 'teams'));
     }
 
     public function create()
@@ -118,7 +123,7 @@ class BenefitController extends Controller
 
         $currencies = Currency::all()->pluck('code', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $benefit->load('resource_code', 'currency');
+        $benefit->load('resource_code', 'currency', 'team');
 
         return view('admin.benefits.edit', compact('resource_codes', 'currencies', 'benefit'));
     }
@@ -134,7 +139,7 @@ class BenefitController extends Controller
     {
         abort_if(Gate::denies('benefit_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $benefit->load('resource_code', 'currency');
+        $benefit->load('resource_code', 'currency', 'team');
 
         return view('admin.benefits.show', compact('benefit'));
     }

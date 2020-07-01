@@ -11,55 +11,18 @@ use App\Http\Requests\UpdateCurrencyHistoryRequest;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Yajra\DataTables\Facades\DataTables;
 
 class CurrencyHistoryController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         abort_if(Gate::denies('currency_history_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        if ($request->ajax()) {
-            $query = CurrencyHistory::with(['currency'])->select(sprintf('%s.*', (new CurrencyHistory)->table));
-            $table = Datatables::of($query);
-
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
-
-            $table->editColumn('actions', function ($row) {
-                $viewGate      = 'currency_history_show';
-                $editGate      = 'currency_history_edit';
-                $deleteGate    = 'currency_history_delete';
-                $crudRoutePart = 'currency-histories';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
-            });
-
-            $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : "";
-            });
-            $table->addColumn('currency_code', function ($row) {
-                return $row->currency ? $row->currency->code : '';
-            });
-
-            $table->editColumn('conversion_rate', function ($row) {
-                return $row->conversion_rate ? $row->conversion_rate : "";
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'currency']);
-
-            return $table->make(true);
-        }
+        $currencyHistories = CurrencyHistory::all();
 
         $currencies = Currency::get()->pluck('code')->toArray();
 
-        return view('admin.currencyHistories.index', compact('currencies'));
+        return view('admin.currencyHistories.index', compact('currencyHistories', 'currencies'));
     }
 
     public function create()

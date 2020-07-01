@@ -15,99 +15,166 @@
     </div>
 
     <div class="card-body">
-        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Holiday">
-            <thead>
-                <tr>
-                    <th width="10">
+        <div class="table-responsive">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Holiday">
+                <thead>
+                    <tr>
+                        <th width="10">
 
-                    </th>
-                    <th>
-                        {{ trans('cruds.holiday.fields.id') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.holiday.fields.resource_code') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.resource.fields.first_name') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.resource.fields.last_name') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.holiday.fields.holidays_type') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.holiday.fields.holiday_year') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.holiday.fields.holiday_month') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.holiday.fields.holiday_residual') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.holiday.fields.holiday_actual') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.holiday.fields.holiday_enjoyed') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.holiday.fields.status') }}
-                    </th>
-                    <th>
-                        &nbsp;
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach($resources as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <select class="search" strict="true">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach(App\Holiday::HOLIDAYS_TYPE_SELECT as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
-                    <td>
-                        <select class="search" strict="true">
-                            <option value>{{ trans('global.all') }}</option>
-                            @foreach(App\Holiday::STATUS_RADIO as $key => $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </thead>
-        </table>
+                        </th>
+                        <th>
+                            {{ trans('cruds.holiday.fields.id') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.holiday.fields.resource_code') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.resource.fields.first_name') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.resource.fields.last_name') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.holiday.fields.holidays_type') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.holiday.fields.holiday_year') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.holiday.fields.holiday_month') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.holiday.fields.holiday_residual') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.holiday.fields.holiday_actual') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.holiday.fields.holiday_enjoyed') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.holiday.fields.status') }}
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <select class="search">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach($resources as $key => $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <select class="search" strict="true">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach(App\Holiday::HOLIDAYS_TYPE_SELECT as $key => $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <select class="search" strict="true">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach(App\Holiday::STATUS_RADIO as $key => $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($holidays as $key => $holiday)
+                        <tr data-entry-id="{{ $holiday->id }}">
+                            <td>
+
+                            </td>
+                            <td>
+                                {{ $holiday->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $holiday->resource_code->resource_code ?? '' }}
+                            </td>
+                            <td>
+                                {{ $holiday->resource_code->first_name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $holiday->resource_code->last_name ?? '' }}
+                            </td>
+                            <td>
+                                {{ App\Holiday::HOLIDAYS_TYPE_SELECT[$holiday->holidays_type] ?? '' }}
+                            </td>
+                            <td>
+                                {{ $holiday->holiday_year ?? '' }}
+                            </td>
+                            <td>
+                                {{ $holiday->holiday_month ?? '' }}
+                            </td>
+                            <td>
+                                {{ $holiday->holiday_residual ?? '' }}
+                            </td>
+                            <td>
+                                {{ $holiday->holiday_actual ?? '' }}
+                            </td>
+                            <td>
+                                {{ $holiday->holiday_enjoyed ?? '' }}
+                            </td>
+                            <td>
+                                {{ App\Holiday::STATUS_RADIO[$holiday->status] ?? '' }}
+                            </td>
+                            <td>
+                                @can('holiday_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.holidays.show', $holiday->id) }}">
+                                        {{ trans('global.view') }}
+                                    </a>
+                                @endcan
+
+                                @can('holiday_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.holidays.edit', $holiday->id) }}">
+                                        {{ trans('global.edit') }}
+                                    </a>
+                                @endcan
+
+                                @can('holiday_delete')
+                                    <form action="{{ route('admin.holidays.destroy', $holiday->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                    </form>
+                                @endcan
+
+                            </td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -120,14 +187,14 @@
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 @can('holiday_delete')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
+  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
     url: "{{ route('admin.holidays.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
-          return entry.id
+      var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
+          return $(entry).data('entry-id')
       });
 
       if (ids.length === 0) {
@@ -149,33 +216,12 @@
   dtButtons.push(deleteButton)
 @endcan
 
-  let dtOverrideGlobals = {
-    buttons: dtButtons,
-    processing: true,
-    serverSide: true,
-    retrieve: true,
-    aaSorting: [],
-    ajax: "{{ route('admin.holidays.index') }}",
-    columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
-{ data: 'resource_code_resource_code', name: 'resource_code.resource_code' },
-{ data: 'resource_code.first_name', name: 'resource_code.first_name' },
-{ data: 'resource_code.last_name', name: 'resource_code.last_name' },
-{ data: 'holidays_type', name: 'holidays_type' },
-{ data: 'holiday_year', name: 'holiday_year' },
-{ data: 'holiday_month', name: 'holiday_month' },
-{ data: 'holiday_residual', name: 'holiday_residual' },
-{ data: 'holiday_actual', name: 'holiday_actual' },
-{ data: 'holiday_enjoyed', name: 'holiday_enjoyed' },
-{ data: 'status', name: 'status' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
-    ],
+  $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 2, 'desc' ]],
+    order: [[ 2, 'asc' ]],
     pageLength: 100,
-  };
-  let table = $('.datatable-Holiday').DataTable(dtOverrideGlobals);
+  });
+  let table = $('.datatable-Holiday:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
@@ -188,7 +234,7 @@
         .search(value, strict)
         .draw()
   });
-});
+})
 
 </script>
 @endsection

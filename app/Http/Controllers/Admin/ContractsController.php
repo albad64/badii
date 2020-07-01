@@ -9,6 +9,7 @@ use App\Http\Requests\MassDestroyContractRequest;
 use App\Http\Requests\StoreContractRequest;
 use App\Http\Requests\UpdateContractRequest;
 use App\Resource;
+use App\Team;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +22,7 @@ class ContractsController extends Controller
         abort_if(Gate::denies('contract_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Contract::with(['resource_code', 'company', 'report_resource_code'])->select(sprintf('%s.*', (new Contract)->table));
+            $query = Contract::with(['resource_code', 'company', 'report_resource_code', 'team'])->select(sprintf('%s.*', (new Contract)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -114,7 +115,12 @@ class ContractsController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.contracts.index');
+        $resources = Resource::get();
+        $companies = Company::get();
+        $resources = Resource::get();
+        $teams     = Team::get();
+
+        return view('admin.contracts.index', compact('resources', 'companies', 'resources', 'teams'));
     }
 
     public function create()
@@ -147,7 +153,7 @@ class ContractsController extends Controller
 
         $report_resource_codes = Resource::all()->pluck('resource_code', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $contract->load('resource_code', 'company', 'report_resource_code');
+        $contract->load('resource_code', 'company', 'report_resource_code', 'team');
 
         return view('admin.contracts.edit', compact('resource_codes', 'companies', 'report_resource_codes', 'contract'));
     }
@@ -163,7 +169,7 @@ class ContractsController extends Controller
     {
         abort_if(Gate::denies('contract_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $contract->load('resource_code', 'company', 'report_resource_code');
+        $contract->load('resource_code', 'company', 'report_resource_code', 'team');
 
         return view('admin.contracts.show', compact('contract'));
     }

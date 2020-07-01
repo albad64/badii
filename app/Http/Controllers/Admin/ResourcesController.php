@@ -4,27 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use App\Country;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyResourceRequest;
 use App\Http\Requests\StoreResourceRequest;
 use App\Http\Requests\UpdateResourceRequest;
 use App\Resource;
+use App\Team;
 use Gate;
 use Illuminate\Http\Request;
-use Spatie\MediaLibrary\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class ResourcesController extends Controller
 {
-    use MediaUploadingTrait;
-
     public function index(Request $request)
     {
         abort_if(Gate::denies('resource_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Resource::with(['birth_country', 'address_country', 'alt_address_country'])->select(sprintf('%s.*', (new Resource)->table));
+            $query = Resource::with(['birth_country', 'address_country', 'alt_address_country', 'team'])->select(sprintf('%s.*', (new Resource)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -63,17 +60,6 @@ class ResourcesController extends Controller
             });
             $table->editColumn('title', function ($row) {
                 return $row->title ? Resource::TITLE_SELECT[$row->title] : '';
-            });
-            $table->editColumn('photo', function ($row) {
-                if ($photo = $row->photo) {
-                    return sprintf(
-                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-                        $photo->url,
-                        $photo->thumbnail
-                    );
-                }
-
-                return '';
             });
             $table->editColumn('gender', function ($row) {
                 return $row->gender ? Resource::GENDER_SELECT[$row->gender] : '';
@@ -167,16 +153,17 @@ class ResourcesController extends Controller
                 return $row->alt_address_state ? $row->alt_address_state : "";
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'photo', 'birth_country', 'company_partner', 'protected_categories', 'address_country', 'alt_address_country']);
+            $table->rawColumns(['actions', 'placeholder', 'birth_country', 'company_partner', 'protected_categories', 'address_country', 'alt_address_country']);
 
             return $table->make(true);
         }
 
-        $countries = Country::get()->pluck('name')->toArray();
-        $countries = Country::get()->pluck('name')->toArray();
-        $countries = Country::get()->pluck('name')->toArray();
+        $countries = Country::get();
+        $countries = Country::get();
+        $countries = Country::get();
+        $teams     = Team::get();
 
-        return view('admin.resources.index', compact('countries', 'countries', 'countries'));
+        return view('admin.resources.index', compact('countries', 'countries', 'countries', 'teams'));
     }
 
     public function create()
@@ -196,14 +183,6 @@ class ResourcesController extends Controller
     {
         $resource = Resource::create($request->all());
 
-        if ($request->input('photo', false)) {
-            $resource->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
-        }
-
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $resource->id]);
-        }
-
         return redirect()->route('admin.resources.index');
     }
 
@@ -217,7 +196,7 @@ class ResourcesController extends Controller
 
         $alt_address_countries = Country::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $resource->load('birth_country', 'address_country', 'alt_address_country');
+        $resource->load('birth_country', 'address_country', 'alt_address_country', 'team');
 
         return view('admin.resources.edit', compact('birth_countries', 'address_countries', 'alt_address_countries', 'resource'));
     }
@@ -226,14 +205,6 @@ class ResourcesController extends Controller
     {
         $resource->update($request->all());
 
-        if ($request->input('photo', false)) {
-            if (!$resource->photo || $request->input('photo') !== $resource->photo->file_name) {
-                $resource->addMedia(storage_path('tmp/uploads/' . $request->input('photo')))->toMediaCollection('photo');
-            }
-        } elseif ($resource->photo) {
-            $resource->photo->delete();
-        }
-
         return redirect()->route('admin.resources.index');
     }
 
@@ -241,7 +212,7 @@ class ResourcesController extends Controller
     {
         abort_if(Gate::denies('resource_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $resource->load('birth_country', 'address_country', 'alt_address_country', 'resourceCodeHouseHolds', 'resourceCodeContracts', 'resourceCodeSalaries', 'resourceCodeBenefits');
+        $resource->load('birth_country', 'address_country', 'alt_address_country', 'team', 'resourceCodeHouseHolds', 'resourceCodeContracts', 'resourceCodeSalaries', 'resourceCodeBenefits');
 
         return view('admin.resources.show', compact('resource'));
     }
@@ -260,17 +231,5 @@ class ResourcesController extends Controller
         Resource::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
-    }
-
-    public function storeCKEditorImages(Request $request)
-    {
-        abort_if(Gate::denies('resource_create') && Gate::denies('resource_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $model         = new Resource();
-        $model->id     = $request->input('crud_id', 0);
-        $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
-
-        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
 }
