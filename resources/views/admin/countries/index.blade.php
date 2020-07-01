@@ -134,7 +134,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 2, 'desc' ]],
+    order: [[ 2, 'asc' ]],
     pageLength: 100,
   });
   let table = $('.datatable-Country:not(.ajaxTable)').DataTable({ buttons: dtButtons })

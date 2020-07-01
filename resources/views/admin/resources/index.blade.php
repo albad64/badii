@@ -398,7 +398,7 @@
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
-    order: [[ 4, 'desc' ]],
+    order: [[ 4, 'asc' ]],
     pageLength: 100,
   };
   let table = $('.datatable-Resource').DataTable(dtOverrideGlobals);
