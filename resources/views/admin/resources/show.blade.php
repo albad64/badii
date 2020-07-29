@@ -355,6 +355,26 @@
                 {{ trans('cruds.benefit.title') }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#resource_code_education" role="tab" data-toggle="tab">
+                {{ trans('cruds.education.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#resource_code_holidays" role="tab" data-toggle="tab">
+                {{ trans('cruds.holiday.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#resource_code_job_experiences" role="tab" data-toggle="tab">
+                {{ trans('cruds.jobExperience.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#resource_code_languages" role="tab" data-toggle="tab">
+                {{ trans('cruds.language.title') }}
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="resource_code_house_holds">
@@ -368,6 +388,18 @@
         </div>
         <div class="tab-pane" role="tabpanel" id="resource_code_benefits">
             @includeIf('admin.resources.relationships.resourceCodeBenefits', ['benefits' => $resource->resourceCodeBenefits])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="resource_code_education">
+            @includeIf('admin.resources.relationships.resourceCodeEducation', ['education' => $resource->resourceCodeEducation])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="resource_code_holidays">
+            @includeIf('admin.resources.relationships.resourceCodeHolidays', ['holidays' => $resource->resourceCodeHolidays])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="resource_code_job_experiences">
+            @includeIf('admin.resources.relationships.resourceCodeJobExperiences', ['jobExperiences' => $resource->resourceCodeJobExperiences])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="resource_code_languages">
+            @includeIf('admin.resources.relationships.resourceCodeLanguages', ['languages' => $resource->resourceCodeLanguages])
         </div>
     </div>
 </div>

@@ -173,7 +173,7 @@
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
     order: [[ 2, 'asc' ]],
-    pageLength: 100,
+    pageLength: 25,
   });
   let table = $('.datatable-pmpPmpDetails:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){

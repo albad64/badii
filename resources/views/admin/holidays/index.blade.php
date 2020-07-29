@@ -69,15 +69,21 @@
                             <select class="search">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($resources as $key => $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item->resource_code }}">{{ $item->resource_code }}</option>
                                 @endforeach
                             </select>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
                             <select class="search" strict="true">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach(App\Holiday::HOLIDAYS_TYPE_SELECT as $key => $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $key }}">{{ $item }}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -100,7 +106,7 @@
                             <select class="search" strict="true">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach(App\Holiday::STATUS_RADIO as $key => $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $key }}">{{ $item }}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -219,7 +225,7 @@
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
     order: [[ 2, 'asc' ]],
-    pageLength: 100,
+    pageLength: 10,
   });
   let table = $('.datatable-Holiday:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){

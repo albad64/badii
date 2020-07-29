@@ -20,7 +20,7 @@ class HolidaysController extends Controller
 
         $holidays = Holiday::all();
 
-        $resources = Resource::get()->pluck('resource_code')->toArray();
+        $resources = Resource::get();
 
         return view('admin.holidays.index', compact('holidays', 'resources'));
     }

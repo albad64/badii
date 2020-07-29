@@ -315,9 +315,10 @@
     ],
     orderCellsTop: true,
     order: [[ 2, 'asc' ]],
-    pageLength: 10,  };
+    pageLength: 25,
+  };
   let table = $('.datatable-Contract').DataTable(dtOverrideGlobals);
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+  $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
