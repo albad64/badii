@@ -107,6 +107,12 @@ class Resource extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+        Resource::observe(new \App\Observers\ResourceActionObserver);
+    }
+
     public function resourceCodeHouseHolds()
     {
         return $this->hasMany(HouseHold::class, 'resource_code_id', 'id');
@@ -125,6 +131,26 @@ class Resource extends Model
     public function resourceCodeBenefits()
     {
         return $this->hasMany(Benefit::class, 'resource_code_id', 'id');
+    }
+
+    public function resourceCodeEducation()
+    {
+        return $this->hasMany(Education::class, 'resource_code_id', 'id');
+    }
+
+    public function resourceCodeHolidays()
+    {
+        return $this->hasMany(Holiday::class, 'resource_code_id', 'id');
+    }
+
+    public function resourceCodeJobExperiences()
+    {
+        return $this->hasMany(JobExperience::class, 'resource_code_id', 'id');
+    }
+
+    public function resourceCodeLanguages()
+    {
+        return $this->hasMany(Language::class, 'resource_code_id', 'id');
     }
 
     public function getHiredDateAttribute($value)

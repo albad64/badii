@@ -212,7 +212,7 @@ class ResourcesController extends Controller
     {
         abort_if(Gate::denies('resource_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $resource->load('birth_country', 'address_country', 'alt_address_country', 'team', 'resourceCodeHouseHolds', 'resourceCodeContracts', 'resourceCodeSalaries', 'resourceCodeBenefits');
+        $resource->load('birth_country', 'address_country', 'alt_address_country', 'team', 'resourceCodeHouseHolds', 'resourceCodeContracts', 'resourceCodeSalaries', 'resourceCodeBenefits', 'resourceCodeEducation', 'resourceCodeHolidays', 'resourceCodeJobExperiences', 'resourceCodeLanguages');
 
         return view('admin.resources.show', compact('resource'));
     }
